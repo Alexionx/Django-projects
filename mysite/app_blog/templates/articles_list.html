@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Усі публікації</h2>
+
+{% for article in articles %}
+  <div class="article-block">
+    <a href="{{ article.get_absolute_url }}"><h3>{{ article.title }}</h3></a>
+    <p>{{ article.description|truncatewords:25 }}</p>
+  </div>
+{% endfor %}
+
+{% endblock %}
