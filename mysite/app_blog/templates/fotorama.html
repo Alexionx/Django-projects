@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+
+<div class="fotorama">
+  {% for image in images %}
+    <img src="{{ image.image.url }}" alt="{{ image.description }}">
+  {% endfor %}
+</div>

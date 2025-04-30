@@ -15,6 +15,8 @@ class Category(models.Model):
 
     def __str__(self):
         return self.category
+    
+    
 
 class Article(models.Model):
     title = models.CharField("Заголовок", max_length=250, help_text="Максимум 250 сим.")
@@ -33,15 +35,11 @@ class Article(models.Model):
         return self.title
 
     def get_absolute_url(self):
+        from django.urls import reverse
         try:
-            return reverse('news-detail', kwargs={
-                'year': self.pub_date.strftime('%Y'),
-                'month': self.pub_date.strftime('%m'),
-                'day': self.pub_date.strftime('%d'),
-                'slug': self.slug
-            })
+            return reverse('articles-category-list', kwargs={'slug': self.slug})
         except:
-            return "/"
+            return '/'
 
 class ArticleImage(models.Model):
     article = models.ForeignKey(Article, verbose_name="Стаття", related_name='images', on_delete=models.CASCADE)

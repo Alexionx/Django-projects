@@ -1,0 +1,8 @@
+<h2>Список публікацій</h2>
+{% if category %}<h3>{{ category }}</h3>{% endif %}
+{% for item in items %}
+  <div>
+    <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
+    <p>{{ item.description|truncatewords:30 }}</p>
+  </div>
+{% endfor %}

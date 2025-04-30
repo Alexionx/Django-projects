@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="uk">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog</title>
-</head>
+<head><title>Головна</title></head>
 <body>
-    Home page
+<h3>Категорії</h3>
+{% for item in categories %}
+  <a href="{{ item.get_absolute_url }}"><h4>{{ item.category }}</h4></a>
+{% endfor %}
+<h3>Останні публікації</h3>
+{% for item in articles %}
+  <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
+  <p>{{ item.description|truncatewords:25 }}</p>
+{% endfor %}
+<a href="{% url 'articles-list' %}">Всі публікації</a>
 </body>
 </html>

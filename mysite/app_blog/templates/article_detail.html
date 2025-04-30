@@ -1,0 +1,5 @@
+<h2>{{ item.title }}</h2>
+<p>{{ item.description|safe }}</p>
+{% if item.images.all %}
+  {% include 'fotorama.html' with images=images %}
+{% endif %}
