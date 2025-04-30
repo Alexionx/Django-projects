@@ -1,16 +1,24 @@
-<!DOCTYPE html>
-<html lang="uk">
-<head><title>Головна</title></head>
-<body>
-<h3>Категорії</h3>
-{% for item in categories %}
-  <a href="{{ item.get_absolute_url }}"><h4>{{ item.category }}</h4></a>
-{% endfor %}
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% spaceless %}
+<nav class="navbar navbar-default">
+  <div class="container">
+    {% for item in categories %}
+      <a href="{{ item.get_absolute_url }}">
+        <h4>{{ item.category }}</h4>
+      </a>
+    {% endfor %}
+  </div>
+</nav>
+
 <h3>Останні публікації</h3>
 {% for item in articles %}
-  <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
-  <p>{{ item.description|truncatewords:25 }}</p>
+  <div class="article-block">
+    <a href="{{ item.get_absolute_url }}"><h4>{{ item.title }}</h4></a>
+    <p>{{ item.description|truncatewords_html:32 }}</p>
+  </div>
 {% endfor %}
-<a href="{% url 'articles-list' %}">Всі публікації</a>
-</body>
-</html>
+<a href="{% url 'articles-list' %}"><h4>Всі публікації</h4></a>
+{% endspaceless %}
+{% endblock %}
